@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'alten-challenge',
+    podModulePrefix: 'alten-challenge/pods',
     environment,
     rootURL: '/',
     locationType: 'auto',
