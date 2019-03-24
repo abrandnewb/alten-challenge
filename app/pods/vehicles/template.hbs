@@ -1,20 +1,5 @@
 <h1>Vehicles</h1>
-{{#each model as |m|}}
-  {{m.owner}}<br>
-  {{m.address}}<br>
+{{#each model as |m index|}}
+  {{vehicle-card model=m index=index}}
 {{/each}}
-  <table>
-    <tr>
-      <th>name</th>
-      <th>Id</th>
-    </tr>
-    <tr>
-      <td>22</td>
-      <td>33</td>
-    </tr>
-    <tr>
-      <td>44</td>
-      <td>55</td>
-    </tr>
-  </table>
 {{outlet}}

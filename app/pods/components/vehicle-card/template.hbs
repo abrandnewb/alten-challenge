@@ -1,0 +1,28 @@
+{{!yield}}
+<div class="card">
+  <div class="card-header">
+    {{model.owner}}
+    <br>
+    <small>{{model.address}}</small>
+  </div>
+  <div class="card-body">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">VIN</th>
+          <th scope="col">Reg. No.</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{add index 1}}</th>
+          <td>{{model.vin}}</td>
+          <td>{{model.regno}}</td>
+          <td>on</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
