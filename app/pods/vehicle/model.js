@@ -4,5 +4,6 @@ export default DS.Model.extend({
     owner: DS.attr(),
     address: DS.attr(),
     vin: DS.attr(),
-    regno: DS.attr()      
+    regno: DS.attr(),
+    status: DS.attr()     
 });
