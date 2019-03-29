@@ -1,0 +1,33 @@
+<h1>v-filter component</h1>
+Filter by:
+
+{{#bs-dropdown as |dd|}}
+  {{#dd.button}}Status <span class="caret"></span>{{/dd.button}}
+  {{#dd.menu as |menu|}}
+    {{#menu.item}}
+      <button {{action "onStatus"}}>On</button>
+    {{/menu.item}}
+    {{#menu.item}}
+      <button {{action "offStatus"}}>Off</button>
+    {{/menu.item}}
+    {{#menu.item}}
+      <button {{action "noStatusFilter"}}>All</button>
+    {{/menu.item}}
+  {{/dd.menu}}
+{{/bs-dropdown}}
+
+{{#if (eq vFilter null)}}
+  {{#each model as |m|}}
+    {{vehicle-card model=m}}
+  {{/each}}
+{{else}}
+  {{#if (eq vFilter 1)}}
+    {{#each statusOn as |on|}}
+      {{vehicle-card model=on}}
+    {{/each}}
+  {{else if (eq vFilter 0)}}
+    {{#each statusOff as |off|}}
+      {{vehicle-card model=off}}
+    {{/each}}
+  {{/if}}
+{{/if}}
