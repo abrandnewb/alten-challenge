@@ -1,5 +1,15 @@
-<h1>v-filter component</h1>
 Filter by:
+
+{{#bs-dropdown as |dd|}}
+  {{#dd.button}}Customers <span class="caret"></span>{{/dd.button}}
+  {{#dd.menu as |menu|}}
+    {{#each customerList as |cl|}}
+      {{#menu.item}}
+        <button {{action "setCFilter" cl.owner}}>{{cl.owner}}</button>
+      {{/menu.item}}
+    {{/each}}
+  {{/dd.menu}}
+{{/bs-dropdown}}
 
 {{#bs-dropdown as |dd|}}
   {{#dd.button}}Status <span class="caret"></span>{{/dd.button}}
@@ -16,7 +26,11 @@ Filter by:
   {{/dd.menu}}
 {{/bs-dropdown}}
 
-{{#if (eq vFilter null)}}
+{{#if (or (not-eq vFilter null) (not-eq cFilter null))}}
+  <button {{action "clearFilter"}}>clear filter</button>
+{{/if}}
+
+{{#if (and (eq vFilter null) (eq cFilter null))}}
   {{#each model as |m|}}
     {{vehicle-card model=m}}
   {{/each}}
@@ -28,6 +42,18 @@ Filter by:
   {{else if (eq vFilter 0)}}
     {{#each statusOff as |off|}}
       {{vehicle-card model=off}}
+    {{/each}}
+  {{else if (eq cFilter "Kalles Grustransporter AB")}}
+    {{#each customerFiltered as |c|}}
+      {{vehicle-card model=c}}
+    {{/each}}
+  {{else if (eq cFilter "Johans Bulk AB")}}
+    {{#each customerFiltered2 as |c|}}
+      {{vehicle-card model=c}}
+    {{/each}}
+  {{else if (eq cFilter "Haralds Värdetransporter AB")}}
+    {{#each customerFiltered3 as |c|}}
+      {{vehicle-card model=c}}
     {{/each}}
   {{/if}}
 {{/if}}

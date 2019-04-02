@@ -3,11 +3,24 @@ import Component from '@ember/component';
 
 export default Component.extend({
     vFilter: null,
+    cFilter: null,
     statusOn: computed.filter('model', function(item) {
         return item.status === 1;
     }),
     statusOff: computed.filter('model', function(item) {
         return item.status === 0;
+    }),
+    customerFiltered: computed.filter('model', function(item) {
+        return item.owner === this.get('cFilter');
+    }),
+    customerFiltered2: computed.filter('model', function(item) {
+        return item.owner === this.get('cFilter');
+    }),
+    customerFiltered3: computed.filter('model', function(item) {
+        return item.owner === this.get('cFilter');
+    }),
+    customerList: computed('model', function() {
+        return this.get('model').uniqBy('owner');
     }),
     actions: {
         onStatus() {
@@ -18,6 +31,16 @@ export default Component.extend({
         },
         noStatusFilter() {
             this.set('vFilter',null);
+        },
+        setCFilter(c) {
+            this.set('cFilter', c);
+            this.set('vFilter',null);
+        },
+        clearFilter() {
+            /* if(this.get('vFilter') !== null || this.get('vFilter') !== null) { */
+                this.set('vFilter', null);
+                this.set('cFilter', null);
+            /* } */
         }
     }
 });
